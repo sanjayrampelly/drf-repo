@@ -12,6 +12,7 @@ from blogs.models import Blog,Comment
 from blogs.serializers import BlogSerializer, CommentSerializer
 from employees.filters import EmployeeFilter
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.permissions import IsAuthenticated
 
 
 #Function Based Views
@@ -179,6 +180,7 @@ class BlogsView(generics.ListCreateAPIView):
     filter_backends=[SearchFilter, OrderingFilter]
     search_fields=['blog_title']
     ordering_fields=['id']
+    permission_classes = [IsAuthenticated]
 
 
 class CommentsView(generics.ListCreateAPIView):
